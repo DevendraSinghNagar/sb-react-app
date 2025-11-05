@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
+
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
+// import About from "./src/components/About";
+import Contact from "./src/components/ContactUs";
+import Error from "./src/components/Error";
+import CardDetail from "./src/components/CardDetail";
 
 // 1 JavaScript code rendering
 // const header = document.getElementById("header");
@@ -61,10 +67,12 @@ const HeaderSimple = () => (
   <h1 className="header">This is a React Arrow Function Component</h1>
 );
 
-const Wrapper = () => (
+const AppLayout = () => (
   <div>
     <Header />
-    <Body />
+    <hr />
+    <Outlet />
+    <hr />
     {jsxElement}
     {console.log("Hello from JSX!")}
     <HeaderFunction />
@@ -76,4 +84,42 @@ const Wrapper = () => (
   </div>
 );
 
-ReactDOM.createRoot(root).render(<Wrapper />);
+/**
+ * Lazy loading a component / Code splitting using React.lazy and Suspense / Dynamic Import / On-demand loading / Deferred loading
+ *  / Asynchronous loading / Chunking / Bundle splitting / Route-based code splitting / Component-level code splitting
+ * Why lazy loading?
+ * Reducing the initial load time of the application by loading components only when they are needed.
+ * Improving performance by splitting the code into smaller chunks that can be loaded on demand.
+ * Enhancing user experience by providing faster load times and reducing the amount of data that needs to be downloaded initially.
+ * How lazy loading works?
+ * React.lazy takes a function that must call a dynamic import().
+ * It's created a separate chunk for the lazy component in the build process and loads it only when it is needed.
+ * Suspense component is used to wrap the lazy component and provide a fallback UI while the lazy component is being loaded.
+ */
+const About = React.lazy(() => import("./src/components/About"));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <About />
+          </Suspense>
+        ),
+      },
+      { path: "/card-detail/:id", element: <CardDetail /> },
+      { path: "/contact", element: <Contact /> },
+    ],
+  },
+]);
+
+ReactDOM.createRoot(root).render(<RouterProvider router={router} />);

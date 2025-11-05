@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 export default function Header() {
   console.log("Header rendered");
@@ -6,10 +7,6 @@ export default function Header() {
   let isLoggedInWithJS = false;
 
   const [isLoggedInWithReact, setIsLoggedInWithReact] = React.useState(false);
-
-  const handleAuthClick = () => {
-    setIsLoggedInWithReact(!isLoggedIn);
-  };
 
   /*
   When using a regular JavaScript variable (like isLoggedInWithJS), even though the value changes
@@ -25,14 +22,32 @@ export default function Header() {
   This is why React state is essential for creating dynamic, reactive user interfaces.
   */
 
+  /** 
+   SPA navigation using Link component from react-router
+   Link component prevents full page reload and only updates the necessary parts of the page
+   1. When a user clicks on a Link, React Router intercepts the click event.
+   2. It prevents the default browser behavior of making a new HTTP request to the server.
+   3. Instead, React Router updates the URL in the browser's address bar using the History API.
+   4. React Router then determines which component(s) need to be rendered based on the new URL.
+   5. Only the components that correspond to the new route are re-rendered, while the rest of the page remains unchanged.
+   6. This results in a faster and smoother user experience, as there is no full page reload.
+   */
   return (
-    <div className="header">
+    <div className="flex justify-between p-4 bg-gray-200 lg:bg-indigo-200">
       <div>Logo</div>
-      <ul>
-        <li>Home</li>
-        <li>About</li>
+      <ul className="flex">
+        <li className="px-4">
+          <Link to="/">Home</Link>
+        </li>
+        <li className="px-4">
+          <Link to="/about">About</Link>
+        </li>
+        <li className="px-4">
+          <a href="/contact">Contact</a>
+        </li>
       </ul>
       <button
+        className="bg-blue-500 p-2 text-white rounded-md hover:bg-amber-600"
         onClick={() => {
           isLoggedInWithJS = !isLoggedInWithJS;
           setIsLoggedInWithReact(!isLoggedInWithReact);
