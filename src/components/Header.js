@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
+import Context from "../utils/Context";
 
 export default function Header() {
   console.log("Header rendered");
@@ -32,6 +33,12 @@ export default function Header() {
    5. Only the components that correspond to the new route are re-rendered, while the rest of the page remains unchanged.
    6. This results in a faster and smoother user experience, as there is no full page reload.
    */
+
+  /**
+   * useContext hook used to get the context value
+   */
+  const UseContext = useContext(Context);
+
   return (
     <div className="flex justify-between p-4 bg-gray-200 lg:bg-indigo-200">
       <div>Logo</div>
@@ -46,22 +53,25 @@ export default function Header() {
           <a href="/contact">Contact</a>
         </li>
       </ul>
-      <button
-        className="bg-blue-500 p-2 text-white rounded-md hover:bg-amber-600"
-        onClick={() => {
-          isLoggedInWithJS = !isLoggedInWithJS;
-          setIsLoggedInWithReact(!isLoggedInWithReact);
-          console.log(
-            "isLoggedInWithJS: ",
-            isLoggedInWithJS,
-            "isLoggedInWithReact: ",
-            isLoggedInWithReact
-          );
-        }}
-      >
-        {isLoggedInWithReact ? "Logout" : "Login"}
-        {isLoggedInWithJS ? " LogoutJS" : " LoginJS"}
-      </button>
+      <div>
+        {UseContext?.userName}
+        <button
+          className="bg-blue-500 p-2 text-white rounded-md hover:bg-amber-600"
+          onClick={() => {
+            isLoggedInWithJS = !isLoggedInWithJS;
+            setIsLoggedInWithReact(!isLoggedInWithReact);
+            console.log(
+              "isLoggedInWithJS: ",
+              isLoggedInWithJS,
+              "isLoggedInWithReact: ",
+              isLoggedInWithReact
+            );
+          }}
+        >
+          {isLoggedInWithReact ? "Logout" : "Login"}
+          {isLoggedInWithJS ? " LogoutJS" : " LoginJS"}
+        </button>
+      </div>
     </div>
   );
 }

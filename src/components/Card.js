@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import { BASE_URL } from "../utils/constant";
 
 const CardComponent = (props) => {
   const { card } = props;
@@ -20,7 +21,7 @@ const CardComponent = (props) => {
       <h4>{card.info.name}</h4>
       <img
         className="w-50 h-50 mx-auto mb-2"
-        src={"https://media-assets.swiggy.com/" + card.info.cloudinaryImageId}
+        src={BASE_URL + card.info.cloudinaryImageId}
         alt="Image"
       />
       <p>{card.info.locality}</p>

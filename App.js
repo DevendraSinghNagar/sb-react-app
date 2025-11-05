@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
+import Context from "./src/utils/Context";
 
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
@@ -67,11 +68,22 @@ const HeaderSimple = () => (
   <h1 className="header">This is a React Arrow Function Component</h1>
 );
 
+/**
+ * Prop drilling in React refers to the process of passing data (props) from a parent component down through
+ * multiple layers of intermediary components to a deeply nested child component that actually needs
+ * that data. This means that components in the middle of the hierarchy might receive and forward props
+ * that they themselves do not directly use or modify.
+ *
+ * Context.Provider: used to update the context value and pass the update value in child tree and
+ * rest of the place value will be as per crateContext
+ */
 const AppLayout = () => (
   <div>
     <Header />
     <hr />
-    <Outlet />
+    <Context.Provider value={{ userName: "Shiv Baba" }}>
+      <Outlet />
+    </Context.Provider>
     <hr />
     {jsxElement}
     {console.log("Hello from JSX!")}

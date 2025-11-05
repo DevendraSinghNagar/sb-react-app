@@ -1,5 +1,7 @@
+import { BASE_URL } from "../utils/constant";
+
 const CardDetailItem = ({ itemCards }) => {
-  console.log(itemCards);
+  // console.log(itemCards);
 
   return (
     itemCards &&
@@ -18,10 +20,7 @@ const CardDetailItem = ({ itemCards }) => {
         </div>
         <div className="">
           <img
-            src={
-              "https://media-assets.swiggy.com/swiggy/image/upload/" +
-              item.card.info.imageId
-            }
+            src={BASE_URL + "swiggy/image/upload/" + item.card.info.imageId}
             alt={item.card.info.name}
             className="w-32 h-32 object-cover mt-2 rounded"
           />

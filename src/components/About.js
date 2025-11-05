@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { UserClassA } from "./UserClassA";
 import UserClassB from "./UserClassB";
 import UserFunction from "./UserFunction";
+import Context from "../utils/Context";
 
 /**
  * About Component have three child components to demonstrate
@@ -72,10 +73,19 @@ class About extends React.Component {
     console.log("About Component Unmounted");
   }
 
+  /**
+   * Context.Consumer used to get the context value in class component
+   */
+
   render() {
     return (
       <div className="my-4 flex flex-col items-center">
         <h1 className="text-3xl">About Us</h1>
+
+        <Context.Consumer>
+          {(context) => <p className="text-xl">Welcome, {context.userName}!</p>}
+        </Context.Consumer>
+
         <div className="flex">
           <UserClassA {...(this.state?.userData || {})} />
           <UserClassB userData={this.state?.userData} />
