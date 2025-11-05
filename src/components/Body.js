@@ -2,6 +2,7 @@ import React, { useCallback } from "react";
 import CardComponent from "./Card";
 import CardSKeleton from "./CardSKeleton";
 import useFetch from "../utils/useFetch";
+import withFlagCard from "./withFlagCard";
 
 const Body = () => {
   console.log("Body Rendered");
@@ -59,6 +60,9 @@ const Body = () => {
   //   );
   // }
 
+  // Enhance the Card component with the withName HOC
+  const EnhancedCardComponent = withFlagCard(CardComponent);
+
   return (filterData && filterData?.length === 0) || loading ? (
     <div
       style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
@@ -86,9 +90,13 @@ const Body = () => {
       <div
         style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}
       >
-        {filterData.map((card) => (
-          <CardComponent key={card.info.id} card={card} />
-        ))}
+        {filterData.map((card, index) =>
+          index % 2 ? (
+            <EnhancedCardComponent key={card.info.id} card={card} />
+          ) : (
+            <CardComponent key={card.info.id} card={card} />
+          )
+        )}
       </div>
     </>
   );
