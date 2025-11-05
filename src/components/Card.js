@@ -6,7 +6,7 @@ const CardComponent = (props) => {
   return (
     <div
       key={card.info.id}
-      className="card"
+      className="w-66"
       style={{
         display: "flex",
         textAlign: "center",
@@ -24,8 +24,11 @@ const CardComponent = (props) => {
         alt="Image"
       />
       <p>{card.info.locality}</p>
+      <p>Cuisines: {card.info.cuisines.join(", ")}</p>
       <Link to={"/card-detail/" + card.info.id}>
-        <button>View Details</button>
+        <button className="bg-blue-500 text-white rounded-sm p-2 my-2">
+          View Details
+        </button>
       </Link>
     </div>
   );
