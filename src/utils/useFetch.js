@@ -21,6 +21,7 @@ const useFetch = (url) => {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
+        // console.log("fetch data", result);
         setData(result);
       } catch (err) {
         setError(err.message);
@@ -28,7 +29,6 @@ const useFetch = (url) => {
         setLoading(false);
       }
     };
-    console.log("data", data);
     fetchData();
   }, []); // Empty dependency array means it only runs once on mount
 

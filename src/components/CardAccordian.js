@@ -10,6 +10,8 @@ import CardAccordianItem from "./CardAccordianItem";
  */
 
 const CardAccordian = ({ itemCards, collapsed, stateLifftingFunction }) => {
+  console.log(itemCards);
+
   const hadlerAccordian = () => {
     console.log("Accordian clicked", collapsed);
     stateLifftingFunction();
@@ -24,7 +26,14 @@ const CardAccordian = ({ itemCards, collapsed, stateLifftingFunction }) => {
         {itemCards.card.card.title}
       </h2>
       {collapsed && (
-        <CardAccordianItem itemCards={itemCards.card.card.itemCards} />
+        <ul>
+          {itemCards.card.card.itemCards.map((item, index) => (
+            <CardAccordianItem
+              key={item.card.info.id + index}
+              {...item.card.info}
+            />
+          ))}
+        </ul>
       )}
     </article>
   );

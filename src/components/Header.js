@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router";
 import Context from "../utils/Context";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   console.log("Header rendered");
@@ -38,6 +39,7 @@ export default function Header() {
    * useContext hook used to get the context value
    */
   const UseContext = useContext(Context);
+  const cartCount = useSelector((store) => store.cart.items).length;
 
   return (
     <div className="flex justify-between p-4 bg-gray-200 lg:bg-indigo-200">
@@ -51,6 +53,9 @@ export default function Header() {
         </li>
         <li className="px-4">
           <a href="/contact">Contact</a>
+        </li>
+        <li className="px-4">
+          <Link to="/cart">Cart: {cartCount}</Link>
         </li>
       </ul>
       <div>

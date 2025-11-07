@@ -21,3 +21,7 @@ browserlist
 
     npm start/npm run start
     npm run build
+
+# Redux
+
+npm i npm install @reduxjs/toolkit react-redux

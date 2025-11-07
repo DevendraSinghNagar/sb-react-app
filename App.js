@@ -9,6 +9,9 @@ import Body from "./src/components/Body";
 import Contact from "./src/components/ContactUs";
 import Error from "./src/components/Error";
 import CardDetail from "./src/components/CardDetail";
+import { Provider } from "react-redux";
+import reduxToolkitStore from "./src/utils/store";
+import Cart from "./src/components/Cart";
 
 // 1 JavaScript code rendering
 // const header = document.getElementById("header");
@@ -78,7 +81,7 @@ const HeaderSimple = () => (
  * rest of the place value will be as per crateContext
  */
 const AppLayout = () => (
-  <div>
+  <Provider store={reduxToolkitStore}>
     <Header />
     <hr />
     <Context.Provider value={{ userName: "Shiv Baba" }}>
@@ -93,7 +96,7 @@ const AppLayout = () => (
     <HeaderArrow />
     <HeaderArrowWithoutReturn />
     <HeaderSimple />
-  </div>
+  </Provider>
 );
 
 /**
@@ -130,6 +133,7 @@ const router = createBrowserRouter([
       },
       { path: "/card-detail/:id", element: <CardDetail /> },
       { path: "/contact", element: <Contact /> },
+      { path: "/cart", element: <Cart /> },
     ],
   },
 ]);
