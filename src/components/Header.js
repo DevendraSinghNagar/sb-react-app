@@ -4,7 +4,7 @@ import Context from "../utils/Context";
 import { useSelector } from "react-redux";
 
 export default function Header() {
-  console.log("Header rendered");
+  // console.log("Header rendered");
 
   let isLoggedInWithJS = false;
 
@@ -43,7 +43,7 @@ export default function Header() {
 
   return (
     <div className="flex justify-between p-4 bg-gray-200 lg:bg-indigo-200">
-      <div>Logo</div>
+      <h1 className="text-5xl">SB App</h1>
       <ul className="flex">
         <li className="px-4">
           <Link to="/">Home</Link>
@@ -63,18 +63,20 @@ export default function Header() {
         <button
           className="bg-blue-500 p-2 text-white rounded-md hover:bg-amber-600"
           onClick={() => {
-            isLoggedInWithJS = !isLoggedInWithJS;
             setIsLoggedInWithReact(!isLoggedInWithReact);
-            console.log(
-              "isLoggedInWithJS: ",
-              isLoggedInWithJS,
-              "isLoggedInWithReact: ",
-              isLoggedInWithReact
-            );
+            // console.log("isLoggedInWithReact: ", isLoggedInWithReact);
           }}
         >
           {isLoggedInWithReact ? "Logout" : "Login"}
-          {isLoggedInWithJS ? " LogoutJS" : " LoginJS"}
+        </button>
+        <button
+          className="bg-blue-500 p-2 text-white rounded-md hover:bg-amber-600"
+          onClick={() => {
+            isLoggedInWithJS = !isLoggedInWithJS;
+            // console.log("isLoggedInWithJS: ", isLoggedInWithJS);
+          }}
+        >
+          {isLoggedInWithJS ? "LogoutJS" : "LoginJS"}
         </button>
       </div>
     </div>

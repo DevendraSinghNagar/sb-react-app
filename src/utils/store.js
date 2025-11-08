@@ -10,8 +10,8 @@ import cartReducer from "./cartSlice";
  * 6 useDispatch used to disptch action on event.
  * 7 Print the value statte in reducer use current function
  */
-const reduxToolkitStore = configureStore({
+const appStore = configureStore({
   reducer: { cart: cartReducer },
 });
 
-export default reduxToolkitStore;
+export default appStore;

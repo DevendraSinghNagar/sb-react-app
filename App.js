@@ -10,7 +10,7 @@ import Contact from "./src/components/ContactUs";
 import Error from "./src/components/Error";
 import CardDetail from "./src/components/CardDetail";
 import { Provider } from "react-redux";
-import reduxToolkitStore from "./src/utils/store";
+import appStore from "./src/utils/store";
 import Cart from "./src/components/Cart";
 
 // 1 JavaScript code rendering
@@ -81,7 +81,7 @@ const HeaderSimple = () => (
  * rest of the place value will be as per crateContext
  */
 const AppLayout = () => (
-  <Provider store={reduxToolkitStore}>
+  <Provider store={appStore}>
     <Header />
     <hr />
     <Context.Provider value={{ userName: "Shiv Baba" }}>

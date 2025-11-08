@@ -6,6 +6,7 @@ const CardComponent = (props) => {
 
   return (
     <div
+      data-testid="card"
       key={card.info.id}
       className="w-66"
       style={{

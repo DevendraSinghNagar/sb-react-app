@@ -5,7 +5,7 @@ import useFetch from "../utils/useFetch";
 import withFlagCard from "./withFlagCard";
 
 const Body = () => {
-  console.log("Body Rendered");
+  // console.log("Body Rendered");
   const [filterData, setFilterData] = React.useState([]);
   const [search, setSearch] = React.useState("");
 
@@ -14,7 +14,7 @@ const Body = () => {
   );
   const restaurantData =
     data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle.restaurants;
-  console.log(restaurantData);
+  // console.log(restaurantData);
 
   React.useEffect(() => {
     if (restaurantData) {
@@ -78,7 +78,12 @@ const Body = () => {
     <>
       <header className="my-4">
         {/* <input type="text" value={search} onChange={handleChange} /> */}
-        <input className="border " type="text" ref={searchRef} />
+        <input
+          className="border "
+          type="text"
+          ref={searchRef}
+          data-testid="searchInput"
+        />
         <button
           className="bg-blue-500 text-white rounded-md p-2 hover:bg-amber-600"
           onClick={handleSearch}
